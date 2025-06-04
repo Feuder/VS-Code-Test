@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrieren</title>
+    <link rel="stylesheet" href="/frontend/public/assets/css/register.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registrieren</h2>
+        <form id="registerForm">
+            <label for="username">Benutzername:</label>
+            <input type="text" id="username" name="username" placeholder="Benutzername eingeben" required>
+
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" placeholder="E-Mail eingeben" required>
+
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" name="password" placeholder="Passwort eingeben" required>
+
+            <button type="submit">Registrieren</button>
+        </form>
+        <p class="footer-link">
+            Schon ein Konto? <a href="login.html">Anmelden</a>
+        </p>
+    </div>
+    <script src="assets/js/register.js"></script>
+</body>
+</html>

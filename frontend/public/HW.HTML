@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware-Verwaltung - Übersicht</title>
+    <link rel="stylesheet" href="/frontend/public/assets/css/HW.CSS">
+    <script type="module" src="/frontend/public/assets/js/HW.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-content">
+        <div class="logo">
+            <h1>HASKAMP</h1>
+        </div>
+        <div class="header-right">
+            <span class="hardware-text">Hardware</span>
+            <span class="separator"></span>
+            <div class="profile-button">
+                <button>
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <div class="profile-dropdown">
+                    <ul>
+                        <li><a href="#">Einstellungen</a></li>
+                        <li><a href="#">Profil ansehen</a></li>
+                        <li><a href="#">Abmelden</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Taskleiste -->
+<nav class="category-bar">
+    <button id="zustate-btn">Startseite</button>
+    <button>Software</button>
+    <button id="eaö-btn">Test</button>
+</nav>
+
+<!-- Hauptcontainer -->
+<main class="main-container">
+    <section class="hauptsection">
+        <form class="Kategorienausw" id="katausw">
+            <nav class="side-bar">
+                <button type="button" data-action="selectCategory" data-category="PC">PC <span class="arrow" id="PC-arrow">▶</span></button>
+                <div class="sub-category" id="PC-sub">
+                    <a href="#" data-action="filterObjectsByCategory" data-category="Surface">Surface</a>
+                    <a href="#" data-action="filterObjectsByCategory" data-category="Fester PC">Fester PC</a>
+                </div>
+                <button type="button" data-action="selectCategory" data-category="Bildschirme">Bildschirme <span class="arrow" id="Bildschirme-arrow">▶</span></button>
+                <div class="sub-category" id="Bildschirme-sub">
+                    <a href="#" data-action="filterObjectsByCategory" data-category="Monitore">Monitore</a>
+                    <a href="#" data-action="filterObjectsByCategory" data-category="Fernseher">Fernseher</a>
+                </div>
+                <button type="button" data-action="selectCategory" data-category="Zubehör">Zubehör <span class="arrow" id="Zubehör-arrow">▶</span></button>
+                <div class="sub-category" id="Zubehör-sub">
+                    <a href="#" data-action="filterObjectsByCategory" data-category="Docking Station">Docking Station</a>
+                    <a href="#" data-action="filterObjectsByCategory" data-category="Grafikkarten">Grafikkarten</a>
+                </div>
+            </nav>
+        </form>
+        <div id="filter-bar">
+            <input type="text" id="search-bar" placeholder="Suche nach Name oder Typ...">
+            <select id="status-filter">
+                <option value="">Status filtern...</option>
+                <option value="Auf lager">Auf Lager</option>
+                <option value="Zugewiesen">Zugewiesen</option>
+                <option value="Defekt">Defekt</option>
+            </select>
+            <input type="number" id="min-price" placeholder="Min. Preis">
+            <input type="number" id="max-price" placeholder="Max. Preis">
+            <button onclick="applyFilters()">Filtern</button>
+        </div>
+        
+        <!-- Ansicht Formular -->
+        <form class="Ansichtform" id="haupform">
+            <h2>PCs Übersicht</h2>
+            <table class="object-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="table-header-id">ID<br>
+                            <select id="filter-id" onchange="updateFilter(0, this.value)">
+                                <option value="">Filtern...</option>
+                            </select>
+                        </th>
+                        <th class="table-header-name">Name<br>
+                            <select id="filter-name" onchange="updateFilter(1, this.value)">
+                                <option value="">Filtern...</option>
+                            </select>
+                        </th>
+                        <th class="table-header-type">Typ<br>
+                            <select id="filter-type" onchange="updateFilter(2, this.value)">
+                                <option value="">Filtern...</option>
+                            </select>
+                        </th>
+                        <th class="table-header-status">Status<br>
+                            <select id="filter-status" onchange="updateFilter(3, this.value)">
+                                <option value="">Filtern...</option>
+                            </select>
+                        </th>
+                        <th class="table-header-location">Standort<br>
+                            <select id="filter-location" onchange="updateFilter(4, this.value)">
+                                <option value="">Filtern...</option>
+                            </select>
+                        </th>
+                        <th class="table-header-department">Abteilung<br>
+                            <select id="filter-department" onchange="updateFilter(5, this.value)">
+                                <option value="">Filtern...</option>
+                            </select>
+                        </th>
+                        <th class="table-header-person">Person<br>
+                            <select id="filter-person" onchange="updateFilter(6, this.value)">
+                                <option value="">Filtern...</option>
+                            </select>
+                        </th>
+                        <th class="table-header-price">Preis<br>
+                            <select id="filter-price" onchange="updateFilter(7, this.value)">
+                                <option value="">Filtern...</option>
+                            </select>
+                        </th>
+                    </tr>                    
+                </thead>
+                <tbody id="hardware-table-body">
+                    <!-- Die Tabellenzeilen werden dynamisch von HW.js generiert -->
+                </tbody>
+            </table>
+        </form>
+    </section>
+</main>
+
+<nav class="footer-bar">
+    <button type="button" class="button" id="openbtn">Erstellen</button>
+    <button class="button" id="delete-button">Löschen</button>
+    <button class="button" id="placeholder-btn">Platzhalter</button>
+</nav>
+
+<div id="modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Neues Objekt hinzufügen</h2>
+        <form id="objektFormular">
+            <!-- Name -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Name eingeben" required>
+
+            <!-- Typ -->
+            <label for="typ">Typ:</label>
+            <input type="text" id="typ" placeholder="Typ eingeben" required>
+
+            <!-- Status -->
+            <label for="status">Status:</label>
+            <select id="status" onchange="iftest()">
+                <option value="Auf lager">Auf lager</option>
+                <option value="Zugewiesen">Zugewiesen</option>
+                <option value="Defekt">Defekt</option>
+            </select>
+
+            <!-- Standort -->
+            <label for="standort" id="standort-label" style="display: none;">Standort:</label>
+            <select id="standort" style="display: none;">
+                <option value="">-- Standort auswählen --</option>
+                <option value="HH">Hamburg</option>
+                <option value="HB">Bremen</option>
+            </select>
+
+            <!-- Abteilung -->
+            <label for="abteilung" id="abteilung-label" style="display: none;">Abteilung:</label>
+            <select id="abteilung" style="display: none;">
+                <option value="">-- Abteilung auswählen --</option>
+            </select>
+
+            <!-- Person -->
+            <label for="person" id="person-label" style="display: none;">Person:</label>
+            <select id="person" style="display: none;">
+                <option value="">-- Person auswählen --</option>
+            </select>
+
+            <!-- Preis -->
+            <label for="preis">Preis:</label>
+            <input type="text" id="preis" placeholder="Preis eingeben" required>
+
+            <button type="submit" id="save-btn">Speichern</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    Erweiterte 
+</div>
+</body>
+</html>

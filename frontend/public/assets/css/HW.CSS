@@ -1,0 +1,575 @@
+/* Globale Stile */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/* Header */
+.header {
+    background-color: #2c3e50;
+    height: 40px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo h1 {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.hardware-text {
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.separator {
+    border-left: 1px solid white;
+    height: 25px;
+    margin: 0 10px;
+}
+
+/* Profil-Button und Dropdown */
+.profile-button {
+    position: relative;
+}
+
+.profile-button button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.profile-button:hover .profile-dropdown {
+    display: block;
+}
+
+/* Kategorie-Leiste */
+.category-bar {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid #ccc;
+    padding: 0;
+    background-color: #f4f7f6;
+}
+
+.category-bar button {
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    color: #333;
+    font-size: 16px;
+    margin: 0;
+}
+
+.category-bar button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Footer-Leiste */
+.footer-bar {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #ccc;
+    padding: 0;
+    background-color: #f4f7f6;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-bar button {
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    color: #333;
+    font-size: 16px;
+    margin: 0;
+}
+
+.footer-bar button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Hauptcontainer und Ansichtsformular */
+.main-container {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 60px; /* Platz für den fixierten Footer */
+}
+
+.Ansichtform {
+    position: absolute;
+    width: calc(100vw - 255px);
+    height: 778px;
+    left: 255px;
+    top: 0;
+    border: none;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+    overflow: hidden;
+}
+
+.Ansichtform h2 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+/* Kategorien Auswahl Formular (Seitenleiste) */
+.Kategorienausw {
+    width: 215px;
+    height: 825px;
+    border: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sidebar Hauptkategorie-Button mit Pfeil */
+.side-bar button {
+    background: none;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #2c3e50; 
+    font-weight: bold;
+}
+
+/* Pfeil-Symbol */
+.arrow {
+    transition: transform 0.3s ease, color 0.3s ease; 
+    font-size: 14px;
+    color: #2c3e50; 
+}
+
+.arrow.down {
+    transform: rotate(90deg); 
+}
+
+/* Unterkategorien-Übergang */
+.sub-category {
+    max-height: 0; 
+    overflow: hidden; 
+    padding-left: 20px;
+    font-size: 14px;
+    opacity: 0; 
+    transition: max-height 0.6s ease, opacity 0.6s ease; 
+}
+
+.sub-category.open {
+    max-height: 200px; 
+    opacity: 1; 
+}
+
+.sub-category a {
+    display: block;
+    padding: 5px 0;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.sub-category a:hover {
+    color: #007BFF;
+}
+
+/* Tabelle für Objekte - Professioneller Look */
+.object-table {
+    width: 97.7%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    overflow: hidden;
+    margin-bottom: 60px; /* Platz für den Footer */
+}
+
+tbody {
+    display: block;
+    height: calc(70vh);
+    overflow-y: auto;
+}
+thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    position: sticky;
+    top: 0;
+    background-color: #f4f7f6; /* Hintergrundfarbe für die Sichtbarkeit */
+}
+
+thead th {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+tbody td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #2c3e50;
+}
+
+.object-table th, .object-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.object-table th {
+    background-color: #f5f5f5;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.object-table tr {
+    transition: background-color 0.3s ease;
+}
+
+.object-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.object-table td {
+    color: #2c3e50;
+}
+
+/* Anpassung der Checkboxen */
+.object-table input[type="checkbox"] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Button-Gruppe */
+.button-group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.button-group button {
+    position: relative;
+    background-color: #2c3e50;
+    color: white;
+    left: 230px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-group button:hover {
+    background-color: #1a252f;
+    transform: translateY(-2px);
+}
+
+.button-group button:active {
+    background-color: #163143;
+    transform: translateY(0);
+}
+
+/* Button-Gruppe - Unten rechts positioniert */
+.button-group.bottom-right {
+    position: absolute;
+    bottom: 20px; /* Abstand vom unteren Rand */
+    right: 300px;  /* Abstand vom rechten Rand */
+    display: flex;
+    gap: 10px;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Content Box */
+.modal-content {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 6px;
+    width: 400px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (min-width: 600px) {
+    .modal-content {
+        width: 400px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Close Button */
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.modal-content .close:hover {
+    color: #333;
+}
+
+/* Modal Header */
+.modal-content h2 {
+    text-align: center;
+    color: #333;
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+/* Form Styling */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-content label {
+    font-size: 0.8125rem;
+    color: #444;
+}
+
+/* Inputs and Dropdowns */
+.modal-content input[type="text"],
+.modal-content select {
+    padding: 8px 6px;
+    border: none;
+    border-bottom: 1px solid #bbb;
+    font-size: 0.875rem;
+    color: #333;
+    background: transparent;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content select:focus {
+    border-bottom: 1px solid #555;
+    outline: none;
+    background: #f1f1f1;
+}
+
+.modal-content input[type="text"]::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Filter Inputs in der Tabelle */
+.object-table input[type="text"] {
+    width: 90%;
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 0.875rem;
+    color: #555;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.object-table input[type="text"]:focus {
+    background-color: #f1f1f1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+/* Save Button */
+.modal-content button {
+    background: #5a6268;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    margin-top: 15px;
+    transition: background 0.2s ease;
+}
+
+.modal-content button:hover {
+    background: #495057;
+}
+
+.modal-content button:active {
+    background: #343a40;
+}
+
+/* Allgemeines Styling für die Tabelle */
+table {
+    width: 100%;                    /* Passt sich an den Container an */
+    border-collapse: collapse;      /* Verhindert Doppelränder */
+    table-layout: fixed;            /* Feste Spaltenbreite */
+}
+
+/* Styling für Tabellenüberschriften */
+table th {
+    padding: 10px 5px;              /* Einheitliches Padding */
+    font-weight: bold;
+    color: #333;
+    background-color: #f1f1f1;      /* Dezentes Grau für den Hintergrund */
+    text-align: center;             /* Zentriert den Text */
+    vertical-align: middle;         /* Vertikale Zentrierung */
+    word-wrap: break-word;          /* Bricht lange Inhalte um */
+}
+
+/* Styling für Dropdown-Menüs in den Tabellenüberschriften */
+table th select {
+    width: 100%;                    /* Füllt die gesamte Spaltenbreite */
+    height: 30px;                   
+    padding: 4px;                   /* Kompaktes Padding */
+    font-size: 13px;                
+    border: 1px solid #ccc;        
+    border-radius: 4px;             
+    background-color: #f9f9f9;     
+    appearance: none;               
+    cursor: pointer;                
+    outline: none;                  
+    transition: border-color 0.3s;  
+    display: block;                 /* Blockdarstellung */
+    margin: 0 auto;                 /* Zentriert das Dropdown */
+    box-sizing: border-box;         /* Berücksichtigt Padding in der Breite */
+}
+
+/* Hover- und Fokus-Effekte für Dropdowns */
+table th select:hover {
+    border-color: #888;             
+}
+
+table th select:focus {
+    border-color: #2980b9;          
+    box-shadow: 0 0 4px rgba(41, 128, 185, 0.3); 
+}
+
+/* Styling für die Tabellenzellen */
+table td {
+    padding: 8px;                   /* Einheitliches Padding */
+    border: none;         /* Standard-Rahmen */
+    text-align: center;             /* Zentrierte Inhalte */
+    word-wrap: break-word;          /* Bricht lange Inhalte um */
+}
+
+/* Feste Breite für die Checkbox-Spalte */
+table th:first-child, table td:first-child {
+    width: 40px;                    /* Breite für Checkbox-Spalte */
+    text-align: center;             /* Checkbox zentrieren */
+}
+
+/* Zentrierung der Checkbox */
+table td:first-child input[type="checkbox"] {
+    display: block;
+    margin: 0 auto;
+}
+
+#filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+#filter-bar input,
+#filter-bar select,
+#filter-bar button {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#filter-bar button {
+    background-color: #2980b9;
+    color: white;
+    cursor: pointer;
+}
+
+#filter-bar button:hover {
+    background-color: #3498db;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erweitertes Dashboard</title>
+    <link rel="stylesheet" href="/frontend/public/assets/css/statistiken.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="/frontend/public/assets/js/statistiken.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>Dashboard</h1>
+        <nav>
+            <div id="STbtn" class="nav-link">
+                <a href="#" class="nav-link">Startseite</a>
+            </div>
+            <a href="#" class="nav-link">Hardware</a>
+            <a href="#" class="nav-link">Statistiken</a>
+        </nav>
+        </div>
+        <button id="toggle-dark-mode" class="dark-mode-btn">🌙</button>
+    </header>
+
+    <!-- KPI-Bereich -->
+    <section class="kpi-section">
+        <div class="kpi-card">
+            <h3>Gesamtgeräte</h3>
+            <p id="total-devices">0</p>
+        </div>
+        <div class="kpi-card">
+            <h3>Defekte Geräte</h3>
+            <p id="defective-devices">0</p>
+        </div>
+        <div class="kpi-card">
+            <h3>Zugewiesene Geräte</h3>
+            <p id="assigned-devices">0</p>
+        </div>
+    </section>
+
+    <!-- Filterbereich -->
+    <section class="filter-bar">
+        <select id="filter-status" multiple>
+            <option value="Auf Lager">Auf Lager</option>
+            <option value="Zugewiesen">Zugewiesen</option>
+            <option value="Defekt">Defekt</option>
+        </select>
+        <select id="filter-location" multiple>
+            <option value="Hamburg">Hamburg</option>
+            <option value="Berlin">Berlin</option>
+            <option value="Bremen">Bremen</option>
+        </select>
+        <button id="apply-filter">Filtern</button>
+    </section>
+
+    <!-- Dashboard -->
+    <main class="dashboard-container">
+        <section class="charts">
+            <div class="chart">
+                <h2>Status</h2>
+                <canvas id="statusChart"></canvas>
+            </div>
+            <div class="chart">
+                <h2>Zeitleiste</h2>
+                <canvas id="timelineChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Tabelle -->
+        <section class="data-table">
+            <h2>Gerätedetails</h2>
+            <button id="export-csv">Export als CSV</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Kategorie</th>
+                        <th>Status</th>
+                        <th>Standort</th>
+                    </tr>
+                </thead>
+                <tbody id="device-data"></tbody>
+            </table>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 HASKAMP | Entwickelt mit ❤️</p>
+    </footer>
+
+    <script type="module">
+        // Entferne den inline onclick und hänge stattdessen einen Event-Listener an.
+        const stBtn = document.getElementById('STbtn');
+        if(stBtn) stBtn.addEventListener('click', () => ShowStart());
+    </script>
+</body>
+</html>

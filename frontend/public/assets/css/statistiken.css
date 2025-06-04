@@ -1,0 +1,206 @@
+/* Globale Stile */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #919191;
+    color: #222;
+}
+
+/* Header */
+.header {
+    background-color: #34495e;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header h1 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.nav-link {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.dark-mode-btn {
+    background-color: #444;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dark-mode-btn:hover {
+    background-color: #333;
+}
+
+/* KPI-Karten */
+.kpi-section {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.kpi-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+}
+
+.kpi-card h3 {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Überarbeitung für den Filterbereich */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 90%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Dropdown-Stil */
+.filter-bar select {
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+    padding: 10px;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    background-color: #fafafa;
+    font-size: 14px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.filter-bar select:focus {
+    border-color: #3a86ff;
+    box-shadow: 0 0 5px rgba(58, 134, 255, 0.5);
+    outline: none;
+}
+
+/* Dropdown-Hover */
+.filter-bar select:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/* Filter-Button */
+#apply-filter {
+    padding: 12px 30px;
+    background-color: #3a86ff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#apply-filter:hover {
+    background-color: #2c6dc1;
+    transform: translateY(-2px);
+}
+
+#apply-filter:active {
+    background-color: #23549b;
+    transform: scale(0.97);
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+        gap: 10px;
+        max-width: 100%;
+    }
+
+    .filter-bar select, 
+    #apply-filter {
+        width: 100%;
+    }
+}
+
+
+/* Diagramme */
+.charts {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    justify-content: space-around;
+}
+
+.chart {
+    background: white;
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    min-width: 250px;
+}
+
+/* Tabelle */
+.data-table {
+    margin: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background: #f5f5f5;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    border-radius: 6px;
+    width: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

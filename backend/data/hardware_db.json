@@ -1,0 +1,62 @@
+[
+  {
+    "id": "98dd84e5-e19e-4ab5-b340-958efe59c279",
+    "name": "Test",
+    "typ": "Test",
+    "status": "Zugewiesen",
+    "standort": "HB",
+    "abteilung": "IT",
+    "person": "Schmidt",
+    "preis": 789
+  },
+  {
+    "id": "79821a1e-b54d-40cf-b401-52971fe96dbb",
+    "name": "Test",
+    "typ": "Test",
+    "status": "Zugewiesen",
+    "standort": "HH",
+    "abteilung": "IT",
+    "person": "Schmidt",
+    "preis": 949
+  },
+  {
+    "id": "b0cc80dc-efc1-4b5a-8558-1d46cc31080d",
+    "name": "Test",
+    "typ": "Test",
+    "status": "Zugewiesen",
+    "standort": "HH",
+    "abteilung": "IT",
+    "person": "Müller",
+    "preis": 4985
+  },
+  {
+    "id": "e056520d-3613-4b05-9aa2-5d97353fa028",
+    "name": "dsf",
+    "typ": "sdf",
+    "status": "Zugewiesen",
+    "standort": "HH",
+    "abteilung": "HR",
+    "person": "Schmidt",
+    "preis": 84
+  },
+  {
+    "id": "5a2b08eb-1284-4b57-afab-ea1ba61a44ed",
+    "name": "Test",
+    "typ": "Test",
+    "status": "Zugewiesen",
+    "standort": "HB",
+    "abteilung": "HR",
+    "person": "Schmidt",
+    "preis": 78
+  },
+  {
+    "id": "a4c720e4-619c-4f7d-910d-620ad200014d",
+    "name": "Test",
+    "typ": "Test",
+    "status": "Zugewiesen",
+    "standort": "HB",
+    "abteilung": "IT",
+    "person": "Müller",
+    "preis": 8789
+  }
+]

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmelden</title>
+    <link rel="stylesheet" href="/frontend/public/assets/css/Login.CSS">
+</head>
+<body>
+    <div class="container">
+        <h2>Anmelden</h2>
+        <form id="loginForm">
+            <label for="username">Benutzername:</label>
+            <input type="text" id="username" name="username" placeholder="Benutzername eingeben" required>
+
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" name="password" placeholder="Passwort eingeben" required>
+
+            <button type="submit" id="loginButton">Anmelden</button>
+        </form>
+        <p class="footer-link">
+            Noch kein Konto? <a href="register.html">Registrieren</a>
+        </p>
+    </div>
+    <script src="/frontend/public/assets/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware-Verwaltung - Übersicht</title>
+    <link rel="stylesheet" href="../HW.CSS"> <!-- Verlinkung zur CSS-Datei -->
+    <link rel="stylesheet" href="/frontend/public/assets/css/EA.CSS">
+    <script type="module" src="../HW.js" defer></script> <!-- Verlinkung zur JS-Datei -->
+    <script type="module" src="/frontend/public/assets/js/EA.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-content">
+        <div class="logo">
+            <h1>HASKAMP</h1>
+        </div>
+        <div class="header-right">
+            <span class="hardware-text">Hardware</span>
+            <span class="separator"></span>
+            <div class="profile-button">
+                <button>
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <div class="profile-dropdown">
+                    <ul>
+                        <li><a href="#">Einstellungen</a></li>
+                        <li><a href="#">Profil ansehen</a></li>
+                        <li><a href="#">Abmelden</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Taskleiste -->
+<nav class="category-bar">
+    <button id="startseite-btn">Startseite</button>
+    <button>Software</button>
+    <button>Test</button>
+</nav>
+
+<!-- Hauptcontainer -->
+<main class="main-container">
+    <section class="hauptsection">
+        <form class="Kategorienausw" id="katausw">
+            <nav class="side-bar">
+                <button type="button" id="pc-category-btn">PC <span class="arrow" id="PC-arrow">▶</span></button>
+                <div class="sub-category" id="PC-sub">
+                    <a href="#" data-category="Surface" class="filter-category">Surface</a>
+                    <a href="#" data-category="Fester PC" class="filter-category">Fester PC</a>
+                </div>
+                <button type="button" id="bildschirme-category-btn">Bildschirme <span class="arrow" id="Bildschirme-arrow">▶</span></button>
+                <div class="sub-category" id="Bildschirme-sub">
+                    <a href="#" data-category="Monitore" class="filter-category">Monitore</a>
+                    <a href="#" data-category="Fernseher" class="filter-category">Fernseher</a>
+                </div>
+                <button type="button" id="zubehoer-category-btn">Zubehör <span class="arrow" id="Zubehör-arrow">▶</span></button>
+                <div class="sub-category" id="Zubehör-sub">
+                    <a href="#" data-category="Docking Station" class="filter-category">Docking Station</a>
+                    <a href="#" data-category="Grafikkarten" class="filter-category">Grafikkarten</a>
+                </div>
+            </nav>
+        </form>
+        <div class="separator"></div>
+
+        <form class="EAAnsicht" id="EAForm">
+            <h2>Objekt Info</h2>
+            <div class="info-container">
+                <div class="left-section" style="width: 66%; float: left;">
+                    <table class="Erweiterte Ansicht">
+                        <thead>
+                            <tr>
+                                <label id="EAname">Name</label>
+                                <input id="EAnametxt" type="text" placeholder="Name des Objektes">
+                            </tr>
+                            <tr>
+                                <label id="EAtype">Typ</label>
+                                <input id="EAtypetxt" type="text" placeholder="Typ eingeben">
+                            </tr>
+                            <tr>
+                                <label id="EAstatus">Status</label>
+                                <select id="status">
+                                    <option value="In Benutzung">In Benutzung</option>
+                                    <option value="Auf Lager">Auf Lager</option>
+                                    <option value="Defekt">Defekt</option>
+                                </select>
+                            </tr>
+                            <tr>
+                                <label id="EAlocation">Standort</label>
+                                <input id="EAlocationtxt" type="text" placeholder="Standort eingeben">
+                            </tr>
+                            <tr>
+                                <label id="EAdepartment">Abteilung</label>
+                                <input id="EAdepartmenttxt" type="text" placeholder="Abteilung eingeben">
+                            </tr>
+                            <tr>
+                                <label id="EAperson">Person</label>
+                                <input id="EApersontxt" type="text" placeholder="Person eingeben">
+                            </tr>
+                            <tr>
+                                <label id="EAprice">Preis</label>
+                                <input id="EApricetxt" type="text" placeholder="Preis eingeben">
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="right-section" style="width: 33%; float: right;">
+                    <table class="Erweiterte Ansicht">
+                        <thead>
+                            <tr>
+                                <label id="EAinventoryNumber">Inventarnummer</label>
+                                <input id="EAinventoryNumbertxt" type="text" placeholder="Inventarnummer eingeben">
+                            </tr>
+                            <tr>
+                                <label id="EApurchaseDate">Kaufdatum</label>
+                                <input id="EApurchaseDatetxt" type="text" placeholder="Kaufdatum eingeben">
+                            </tr>
+                            <tr>
+                                <label id="EAwarrantyExpiration">Garantieablauf</label>
+                                <input id="EAwarrantyExpirationtxt" type="text" placeholder="Garantieablauf eingeben">
+                            </tr>
+                            <tr>
+                                <label id="EAsupplier">Lieferant</label>
+                                <input id="EAsuppliertxt" type="text" placeholder="Lieferant eingeben">
+                            </tr>
+                            <tr>
+                                <label id="EAserialNumber">Seriennummer</label>
+                                <input id="EAserialNumbertxt" type="text" placeholder="Seriennummer eingeben">
+                            </tr>
+                            <tr>
+                                <label id="EAnotes">Notizen</label>
+                                <input id="EAnotestxt" type="text" placeholder="Notizen eingeben">
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </form>
+        
+        
+    </section>
+</main>
+
+<nav class="footer-bar">
+    <button type="button" class="button" id="open-modal-btn">Erstellen</button>
+    <button class="button" id="delete-selected-objects-btn">Löschen</button>
+    <button class="button" id="placeholder-action-btn">Platzhalter</button>
+</nav>
+
+<div id="modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="close-modal-btn" class="close">&times;</span>
+        <h2>Neues Objekt hinzufügen</h2>
+        <form id="objectForm">
+            <!-- Name (Textfeld) -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Name eingeben" required>
+
+            <!-- Typ (Textfeld) -->
+            <label for="type">Typ:</label>
+            <input type="text" id="type" placeholder="Typ eingeben" required>
+
+            <!-- Status (Textfeld) -->
+            <label for="status">Status:</label>
+            <input type="text" id="status" placeholder="Status eingeben" required>
+
+            <!-- Standort (Dropdown) -->
+            <label for="location">Standort:</label>
+            <select id="location">
+                <option value="">-- Standort auswählen --</option>
+                <option value="HH">HH</option>
+                <option value="HB">HB</option>
+            </select>
+
+            <!-- Abteilung (Dropdown, dynamisch) -->
+            <label for="department">Abteilung:</label>
+            <select id="department">
+                <option value="">-- Abteilung auswählen --</option>
+            </select>
+
+            <!-- Person (Dropdown, dynamisch) -->
+            <label for="person">Person:</label>
+            <select id="person">
+                <option value="">-- Person auswählen --</option>
+            </select>
+
+            <!-- Preis (Textfeld) -->
+            <label for="price">Preis:</label>
+            <input type="text" id="price" placeholder="Preis eingeben" required>
+
+            <button type="button" id="save-object-btn">Speichern</button>
+        </form>
+    </div>
+</div>
+
+<script type="module">
+// filepath: c:\Users\cgr\OneDrive - HASKAMP\Dokumente\Programiertest\VS Code Test\frontend\public\EA.HTML
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('startseite-btn')?.addEventListener('click', () => zustate());
+    document.getElementById('pc-category-btn')?.addEventListener('click', () => selectCategory('PC'));
+    document.getElementById('bildschirme-category-btn')?.addEventListener('click', () => selectCategory('Bildschirme'));
+    document.getElementById('zubehoer-category-btn')?.addEventListener('click', () => selectCategory('Zubehör'));
+    
+    document.querySelectorAll('.filter-category').forEach(el => {
+        el.addEventListener('click', e => {
+            e.preventDefault();
+            filterObjectsByCategory(el.getAttribute('data-category'));
+        });
+    });
+
+    document.getElementById('save-object-btn')?.addEventListener('click', () => saveObject());
+    document.getElementById('open-modal-btn')?.addEventListener('click', e => openModal(e));
+    document.getElementById('delete-selected-objects-btn')?.addEventListener('click', () => deleteSelectedObjects());
+    document.getElementById('placeholder-action-btn')?.addEventListener('click', () => placeholderAction());
+    document.getElementById('location')?.addEventListener('change', updateDepartmentOptions);
+    document.getElementById('department')?.addEventListener('change', updatePersonOptions);
+    document.getElementById('close-modal-btn')?.addEventListener('click', () => closeModal());
+});
+</script>
+
+</body>
+</html>

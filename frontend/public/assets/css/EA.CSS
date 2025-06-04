@@ -1,0 +1,166 @@
+
+
+/* Hauptstil für die erweiterte Ansicht */
+.EAAnsicht {
+    position: absolute;
+    width: calc(100vw - 255px); /* Breite des Formulars abzüglich der Sidebar */
+    height: 778px;
+    left: 255px; /* Positioniert das Formular neben der Sidebar */
+    top: 0;
+    border: none;
+    padding: 20px;
+    border-left: 1px solid #ccc; /* Linker Rand als Abgrenzung */
+    overflow: hidden;
+}
+
+/* Styling für den Container mit Inhalt */
+.info-container {
+    display: flex;
+    gap: 15px; /* Abstand zwischen den Abschnitten */
+}
+
+/* Styling für den linken Abschnitt mit Formularfeldern */
+.left-section {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 6px;
+    width: 66%; /* Nimmt zwei Drittel des Containers ein */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Leichter Schatten für Tiefe */
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+/* Styling für den rechten Abschnitt mit Formularfeldern */
+.right-section {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 6px;
+    width: 33%; /* Nimmt ein Drittel des Containers ein */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Leichter Schatten für Tiefe */
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    margin-right: 37px;
+    position: relative;
+}
+
+/* Styling für das Dropdown-Menü des Status */
+.status-dropdown {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+/* Dropdown-Feld für den Status */
+select#status {
+    padding: 8px 6px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: #333;
+    width: 30%;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Farbgestaltung für verschiedene Statusoptionen */
+select#status option[value="In Benutzung"] {
+    background-color: #d4edda; /* Hellgrün für "In Benutzung" */
+    color: #155724; /* Dunkelgrüne Schrift */
+}
+
+select#status option[value="Auf Lager"] {
+    background-color: #fff3cd; /* Hellgelb für "Auf Lager" */
+    color: #856404; /* Dunkelgelbe Schrift */
+}
+
+select#status option[value="Defekt"] {
+    background-color: #f8d7da; /* Hellrot für "Defekt" */
+    color: #721c24; /* Dunkelrote Schrift */
+}
+
+select#status:focus {
+    border-color: #555;
+    outline: none;
+}
+
+/* Styling für Formularbeschriftungen (Labels) */
+label {
+    font-size: 0.8125rem;
+    color: #444;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Styling für Eingabefelder */
+input[type="text"] {
+    padding: 8px 6px;
+    border: none;
+    border-bottom: 1px solid #bbb;
+    font-size: 0.875rem;
+    color: #333;
+    background: transparent;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    display: block;
+    margin-bottom: 15px;
+    width: 30%;
+}
+
+input[type="text"]:focus {
+    border-bottom: 1px solid #555;
+    outline: none;
+    background: #f1f1f1;
+}
+
+input[type="text"]::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Allgemeines Styling für Dropdown-Menüs in Tabellen */
+table th select {
+    width: 100px;
+    height: 30px;
+    padding: 8px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+table th select:hover {
+    border-color: #888;
+}
+
+table th select:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 4px rgba(41, 128, 185, 0.3);
+}
+
+/* Styling für Tabellenüberschriften */
+table th {
+    text-align: left;
+    padding: 10px 5px;
+    font-weight: bold;
+    color: #333;
+    background-color: #f1f1f1;
+}
+
+table th select {
+    margin-top: 5px;
+}
+
+/* Styling für Überschriften der erweiterten Ansicht */
+.EAAnsicht h2 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin: 10px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-weight: normal;
+}

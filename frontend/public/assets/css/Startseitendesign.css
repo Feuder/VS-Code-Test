@@ -1,0 +1,166 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+/* Header Bereich */
+.header-section {
+    background-color: #2c3e50;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+/* Haupt-Navigation */
+/* Hier wird das Padding reduziert, um die Kacheln näher an den Header zu bringen */
+.main-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Abstand zwischen den Kacheln */
+    padding: 50px 0; /* Weniger Padding, um die Kacheln näher an den Header zu bringen */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tile {
+    width: 250px;
+    height: 200px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.tile:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.tile i {
+    font-size: 45px;
+    color: #2980b9;
+}
+
+.tile h2 {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #34495e;
+}
+
+/* Zusätzlicher Inhalt unter den Buttons */
+/* Hier wird das Padding verringert, um die Statistiken näher an die Kacheln zu rücken */
+.additional-content {
+    padding: 30px 0; /* Weniger Padding, um den Platz effizienter zu nutzen */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Statistiken */
+/* Hier wird das Margin reduziert, um die Statistiken näher an die Suchleiste zu bringen */
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    width: 1125px; /* Feste Breite für die Statistiken */
+    margin-bottom: 40px; /* Weniger Abstand nach unten */
+}
+
+.stat-tile {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 0 10px;
+}
+
+.stat-tile h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.stat-tile p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+/* Suchleiste */
+/* Hier wird das Margin reduziert, um die Suchleiste näher an die Statistiken zu bringen */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px; /* Weniger Abstand nach unten */
+    width: 1000px;
+}
+
+.search-container input {
+    width: 600px;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+}
+
+.search-container button {
+    padding: 12px 40px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.search-container button:hover {
+    background-color: #3498db;
+}
+
+/* Letzte Aktivitäten */
+/* Hier wird das Margin reduziert, um die Aktivitätenliste näher an die Suchleiste zu bringen */
+.activity-list {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+    margin-bottom: 15px; /* Weniger Abstand nach unten */
+}
+
+.activity-list h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.activity-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.activity-list ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}

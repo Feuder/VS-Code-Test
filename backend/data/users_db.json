@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": "8349227a-af02-441b-972d-3beee05edcb2",
+      "username": "cas",
+      "password": "$2b$10$79zJRA2jlVtI1usTZXtYMOrn1ewxcqQ8diOV2/tDRvaiLSSX2eicS",
+      "email": "1@2.de",
+      "role": "user",
+      "created_at": "2025-03-24T14:13:10.768Z"
+    },
+    {
+      "id": "a35abb2f-78e9-4d6f-b629-f7aa02b674d5",
+      "username": "Cas",
+      "password": "$2b$10$gJd4rp/3UJ5dJDhsh2s74.kttqtHF.PwWvjfmwVE82JEIUgNirG1i",
+      "email": "123@sad.de",
+      "role": "user",
+      "created_at": "2025-05-08T06:31:44.524Z"
+    }
+  ],
+  "tokens": []
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firmenverwaltung</title>
+    <link rel="stylesheet" href="/frontend/public/assets/css/Startseitendesign.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script type="module" src="/frontend/public/assets/js/Startseitenscript.js"></script>
+</head>
+<body>
+    <!-- Header Bereich -->
+    <header class="header-section">
+        <div class="header-title">
+            <h1>Firmenverwaltung</h1>
+        </div>
+    </header>
+
+    <!-- Hauptnavigation -->
+    <section class="main-navigation">
+        <div id="HWbnt" class="tile" data-action="showHW" data-arg="overview">
+            <i class="fas fa-desktop"></i>
+            <h2>Hardware</h2>
+        </div>
+        <div class="tile" data-action="showSW" data-arg="software">
+            <i class="fas fa-laptop-code"></i>
+            <h2>Software</h2>
+        </div>
+        <div class="tile" data-action="showL" data-arg="licenses">
+            <i class="fas fa-key"></i>
+            <h2>Lizenzen</h2>
+        </div>
+        <div class="tile" data-action="showA" data-arg="departments">
+            <i class="fas fa-building"></i>
+            <h2>Abteilungen</h2>
+        </div>
+        <div class="tile" data-action="showSTATI">
+            <i class="fas fa-chart-bar"></i>
+            <h2>Statistiken</h2>
+        </div>
+    </section>
+    
+
+    <!-- Zusätzliche Inhalte unter den Buttons -->
+    <section class="additional-content">
+        <div class="stats-container">
+            <div class="stat-tile">
+                <h3>Geräte im Betrieb</h3>
+                <p id="objectCount"></p> 
+            </div>
+            <div class="stat-tile">
+                <h3>Verfügbare Lizenzen</h3>
+                <p></p>
+            </div>
+            <div class="stat-tile">
+                <h3>Aktive Software</h3>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Suchleiste -->
+        <div class="search-container">
+            <input type="text" placeholder="Suchen nach Geräten, Lizenzen, Abteilungen..." />
+            <button type="button">Suchen</button>
+        </div>
+
+        <!-- Liste der letzten Aktivitäten -->
+        <div class="activity-list">
+            <h3>Letzte Aktivitäten</h3>
+            <ul>
+                <li>Neues Gerät hinzugefügt: Laptop A</li>
+                <li>Lizenz für Software B erneuert</li>
+                <li>Abteilung C hat neue Lizenzen zugewiesen bekommen</li>
+            </ul>
+        </div>
+    </section>
+
+    <script type="module">
+        document.querySelectorAll('.tile').forEach(tile => {
+            const action = tile.dataset.action;
+            const arg = tile.dataset.arg;
+            if(action) {
+                tile.addEventListener('click', () => {
+                    window[action] ? window[action](arg) : console.error("Funktion " + action + " nicht gefunden");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

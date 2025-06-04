@@ -1,0 +1,23 @@
+{
+  "name": "vs-code-test",
+  "version": "1.0.0",
+  "description": "Firmenverwaltung Projekt",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "dotenv": "^16.0.3",
+    "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "joi": "^17.7.0",
+    "helmet": "^6.0.1",
+    "express-rate-limit": "^6.7.0",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {},
+  "license": "ISC"
+}
