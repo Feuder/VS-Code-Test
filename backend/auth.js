@@ -4,8 +4,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
 const Joi = require('joi'); // Neuer Schritt: Inputvalidierung (z. B. Joi) vor Registration und Login
-const { writeLog } = require('./logger');
-const { timeStamp } = require('console');
+
 const SECRET_KEY = process.env.SECRET_KEY || 'default_secret_key';
 const usersDataPath = path.join(__dirname, 'data', 'users_db.json');
 
@@ -34,7 +33,6 @@ async function registerUser(req, res) {
 
     const { error } = schema.validate(req.body);
     if (error) {
-        writeLog(`Registrierung fehlgeschlagen: Ungültige Eingaben - ${error.message}`);
         return res.status(400).send('Ungültige Eingaben.');
     }
 
@@ -45,7 +43,6 @@ async function registerUser(req, res) {
         (user) => user.username === username || user.email === email
     );
     if (existingUser) {
-        writeLog(`Registrierung fehlgeschlagen: Benutzername/E-Mail bereits vergeben - ${username}`);
         return res.status(409).send('Benutzername oder E-Mail bereits vergeben.');
     }
 
@@ -61,14 +58,12 @@ async function registerUser(req, res) {
 
     userData.users.push(newUser);
     saveUserData(userData);
-    writeLog(`Benutzer registriert: ${username}`);
     res.status(201).send('Benutzer erfolgreich registriert.');
 }
 
 async function loginUser(req, res) {
     const { error } = loginSchema.validate(req.body);
     if (error) {
-        writeLog(`Login fehlgeschlagen: ungültige Eingabedaten - ${error.details[0].message}`);
         return res.status(400).send(`Ungültige Eingabedaten: ${error.details[0].message}`);
     }
 
@@ -77,18 +72,15 @@ async function loginUser(req, res) {
 
     const user = userData.users.find((user) => user.username === username);
     if (!user) {
-        writeLog(`Login fehlgeschlagen: Benutzer nicht gefunden - ${username}`);
         return res.status(404).send('Benutzer nicht gefunden.');
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-        writeLog(`Login fehlgeschlagen: Falsches Passwort - ${username}`);
         return res.status(401).send('Falsches Passwort.');
     }
 
     const token = jwt.sign({ id: user.id, role: user.role }, process.env.SECRET_KEY || 'default_secret_key', { expiresIn: '1h' });
-    writeLog(`Login erfolgreich: ${username}`);
     res.cookie('token', token, { 
         httpOnly: true, 
         secure: process.env.NODE_ENV === 'production', 
@@ -103,24 +95,23 @@ function checkAuth(req, res, next) {
          authHeader = 'Bearer ' + req.cookies.token;
     }
     
-    console.log(timeStamp(), 'Erhaltener Auth Header:', authHeader); 
+
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        console.log('Fehler: Kein Auth-Header oder falsches Format');
+
         return res.status(401).send('Nicht autorisiert. Token fehlt oder ungültig.');
     }
 
     const token = authHeader.split(' ')[1];
-    console.log('Extrahiertes Token:', token);
+
 
     try {
         const decoded = jwt.verify(token, process.env.SECRET_KEY || 'default_secret_key');
-        console.log('Token erfolgreich verifiziert:', decoded);
+
         req.user = decoded;
         next();
     } catch (err) {
-        writeLog(`Token ungültig oder abgelaufen: ${err.message}`);
-        console.log('Token ungültig oder abgelaufen:', err.message);
+        
         return res.status(403).send('Ungültiges oder abgelaufenes Token.');
     }
 }

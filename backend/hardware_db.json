@@ -1,22 +1,12 @@
 [
   {
-    "name": "sad",
-    "typ": "Test",
+    "name": "Cas",
+    "typ": "123",
     "status": "Zugewiesen",
-    "standort": "HH",
-    "abteilung": "IT",
-    "person": "Müller",
+    "standort": "HB",
+    "abteilung": "Logistik",
+    "person": "Schulz",
     "preis": 123,
-    "id": 3
-  },
-  {
-    "name": "sad",
-    "typ": "Test",
-    "status": "Zugewiesen",
-    "standort": "HH",
-    "abteilung": "IT",
-    "person": "Müller",
-    "preis": 123,
-    "id": 4
+    "id": 2
   }
 ]
