@@ -12,14 +12,31 @@ const Joi          = require('joi');
 const { registerUser, loginUser, checkAuth } = require('./auth');
 const { writeLog } = require('./logger');
 
+// Einfacher Middleware-Ersatz f\xC3\xBCr "cookie-parser"
+function parseCookies(req, res, next) {
+  req.cookies = {};
+  const raw = req.headers.cookie;
+  if (raw) {
+    raw.split(';').forEach(cookie => {
+      const parts = cookie.split('=');
+      const name = parts.shift().trim();
+      const value = decodeURIComponent(parts.join('=') || '');
+      req.cookies[name] = value;
+    });
+  }
+  next();
+}
+
 const app = express();
 
 // --- Middlewares ---
 app.use(cors());
 app.options('*', cors());
 app.use(bodyParser.json());
+app.use(parseCookies);
 app.use(helmet());
-app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));  // 100 Requests pro 15 Minuten :contentReference[oaicite:0]{index=0}:contentReference[oaicite:1]{index=1}
+// 100 Requests pro 15 Minuten
+app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 
 // --- Data setup ---
 const dataPath   = path.join(__dirname, 'hardware_db.json');

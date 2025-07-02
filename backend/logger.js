@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const logFilePath = path.join(__dirname, '/data/logs/Server log.txt');
+const logFilePath = path.join(__dirname, 'data', 'logs', 'Server Log.txt');
 
 console.log('Log-Dateipfad:', logFilePath);
 
