@@ -39,8 +39,6 @@ app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // --- Data setup ---
 // codex/uuid-basierte-id-erzeugung-implementieren
-const dataPath   = path.join(__dirname, 'hardware_db.json');
-=======
 const dataPath   = path.join(__dirname, 'data', 'hardware_db.json');
 const idFilePath = path.join(__dirname, 'ID.txt');
 // main
