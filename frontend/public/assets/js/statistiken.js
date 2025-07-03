@@ -1,15 +1,18 @@
 import { checkLoginStatus, apiFetch, logout } from './Einlog.js';
 
+let deviceData = [];
+
 document.addEventListener('DOMContentLoaded', () => {
     checkLoginStatus();
 
-    // Ersetze Laden der Demo-Daten
     apiFetch('/statistics')
       .then(data => {
-        updateKPI(data);
-        createChart("statusChart", "pie", getStatusData(data));
+        const hardware = Array.isArray(data) ? data : data.items;
+        deviceData = hardware;
+        updateKPI(hardware, data);
+        createChart("statusChart", "pie", getStatusData(hardware, data.statusCounts));
         createChart("timelineChart", "line", getTimelineData());
-        populateTable(data);
+        populateTable(hardware);
       })
       .catch(err => console.error(err));
 
@@ -40,10 +43,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function updateKPI(data) {
-    document.getElementById("total-devices").innerText = data.length;
-    document.getElementById("defective-devices").innerText = data.filter(d => d.status === "Defekt").length;
-    document.getElementById("assigned-devices").innerText = data.filter(d => d.status === "Zugewiesen").length;
+function updateKPI(list, stats) {
+    if (stats && typeof stats.total === 'number') {
+        document.getElementById("total-devices").innerText = stats.total;
+        document.getElementById("defective-devices").innerText = stats.defective;
+        document.getElementById("assigned-devices").innerText = stats.assigned;
+    } else {
+        document.getElementById("total-devices").innerText = list.length;
+        document.getElementById("defective-devices").innerText = list.filter(d => d.status === "Defekt").length;
+        document.getElementById("assigned-devices").innerText = list.filter(d => d.status === "Zugewiesen").length;
+    }
 }
 
 function createChart(canvasId, type, data) {
@@ -51,12 +60,14 @@ function createChart(canvasId, type, data) {
     new Chart(ctx, { type, data });
 }
 
-function getStatusData(data) {
-    const counts = { "Auf Lager": 0, "Zugewiesen": 0, "Defekt": 0 };
-    data.forEach(d => counts[d.status]++);
+function getStatusData(list, counts) {
+    const statusCounts = counts || list.reduce((acc, d) => {
+        acc[d.status] = (acc[d.status] || 0) + 1;
+        return acc;
+    }, { "Auf Lager": 0, "Zugewiesen": 0, "Defekt": 0 });
     return {
-        labels: Object.keys(counts),
-        datasets: [{ data: Object.values(counts), backgroundColor: ["#4caf50", "#ff9800", "#f44336"] }]
+        labels: Object.keys(statusCounts),
+        datasets: [{ data: Object.values(statusCounts), backgroundColor: ["#4caf50", "#ff9800", "#f44336"] }]
     };
 }
 
