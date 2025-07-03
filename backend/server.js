@@ -8,7 +8,6 @@ const helmet       = require('helmet');
 const rateLimit    = require('express-rate-limit');
 const Joi          = require('joi');
 const { registerUser, loginUser, checkAuth } = require('./auth');
-const { v4: uuidv4 } = require('uuid');
 
 // Einfacher Middleware-Ersatz f\xC3\xBCr "cookie-parser"
 function parseCookies(req, res, next) {
@@ -41,6 +40,18 @@ app.use(express.static(path.join(__dirname, '../frontend/public')));
 // codex/uuid-basierte-id-erzeugung-implementieren
 const dataPath   = path.join(__dirname, 'data', 'hardware_db.json');
 const idFilePath = path.join(__dirname, 'ID.txt');
+
+function loadCurrentId() {
+  if (fs.existsSync(idFilePath)) {
+    const val = parseInt(fs.readFileSync(idFilePath, 'utf8'), 10);
+    return isNaN(val) ? 0 : val;
+  }
+  return 0;
+}
+
+function saveCurrentId(id) {
+  fs.writeFileSync(idFilePath, id.toString());
+}
 // main
 
 function loadData() {
@@ -62,10 +73,12 @@ function saveData(data) {
 }
 
 let items = loadData();
+let currentId = Math.max(loadCurrentId(), ...items.map(it => Number(it.id) || 0));
+saveCurrentId(currentId);
 
 // --- Validation schema ---
 const hardwareSchema = Joi.object({
-  id:        Joi.string().optional(),
+  id:        Joi.number().integer().positive().optional(),
   name:      Joi.string().min(3).required(),
   typ:       Joi.string().min(3).required(),
   status:    Joi.string().valid('Zugewiesen', 'Defekt', 'Auf Lager').required(),
@@ -90,7 +103,9 @@ app.post('/save-object', checkAuth, (req, res) => {
   }
 
   const newItem = { ...req.body, preis: parseFloat(req.body.preis) };
-  newItem.id = uuidv4();
+  currentId += 1;
+  newItem.id = currentId;
+  saveCurrentId(currentId);
 
   items.push(newItem);
   saveData(items);
