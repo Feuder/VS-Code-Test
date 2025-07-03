@@ -147,6 +147,30 @@ app.get('/generate-id', (req, res) => {
   res.json({ id: newId });
 });
 
+// Aggregated statistics for hardware items
+app.get('/statistics', checkAuth, (req, res) => {
+  const mappedItems = items.map(it => ({
+    id:       it.id,
+    name:     it.name,
+    category: it.typ,
+    status:   it.status,
+    location: it.standort,
+  }));
+
+  const statusCounts = mappedItems.reduce((acc, cur) => {
+    acc[cur.status] = (acc[cur.status] || 0) + 1;
+    return acc;
+  }, {});
+
+  res.json({
+    items: mappedItems,
+    total: mappedItems.length,
+    defective: statusCounts['Defekt'] || 0,
+    assigned: statusCounts['Zugewiesen'] || 0,
+    statusCounts,
+  });
+});
+
 // --- Auth endpoints ---
 app.post('/register', registerUser);
 app.post('/login',    loginUser);
