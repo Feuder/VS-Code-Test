@@ -37,7 +37,7 @@ app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // --- Data setup ---
-const dataPath   = path.join(__dirname, 'hardware_db.json');
+const dataPath   = path.join(__dirname, 'data', 'hardware_db.json');
 const idFilePath = path.join(__dirname, 'ID.txt');
 
 function loadData() {
