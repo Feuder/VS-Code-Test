@@ -34,6 +34,7 @@ app.use(parseCookies);
 app.use(helmet());
 // 100 Requests pro 15 Minuten
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
+app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // --- Data setup ---
 const dataPath   = path.join(__dirname, 'hardware_db.json');
