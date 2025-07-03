@@ -8,6 +8,7 @@ const helmet       = require('helmet');
 const rateLimit    = require('express-rate-limit');
 const Joi          = require('joi');
 const { registerUser, loginUser, checkAuth } = require('./auth');
+const { v4: uuidv4 } = require('uuid');
 
 // Einfacher Middleware-Ersatz f\xC3\xBCr "cookie-parser"
 function parseCookies(req, res, next) {
@@ -37,8 +38,12 @@ app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // --- Data setup ---
+// codex/uuid-basierte-id-erzeugung-implementieren
+const dataPath   = path.join(__dirname, 'hardware_db.json');
+=======
 const dataPath   = path.join(__dirname, 'data', 'hardware_db.json');
 const idFilePath = path.join(__dirname, 'ID.txt');
+// main
 
 function loadData() {
   if (fs.existsSync(dataPath)) {
@@ -62,7 +67,7 @@ let items = loadData();
 
 // --- Validation schema ---
 const hardwareSchema = Joi.object({
-  id:        Joi.number().optional(),
+  id:        Joi.string().optional(),
   name:      Joi.string().min(3).required(),
   typ:       Joi.string().min(3).required(),
   status:    Joi.string().valid('Zugewiesen', 'Defekt', 'Auf Lager').required(),
@@ -87,9 +92,7 @@ app.post('/save-object', checkAuth, (req, res) => {
   }
 
   const newItem = { ...req.body, preis: parseFloat(req.body.preis) };
-  const newId   = getLastId() + 1;
-  newItem.id    = newId;
-  saveLastId(newId);
+  newItem.id = uuidv4();
 
   items.push(newItem);
   saveData(items);
@@ -99,7 +102,7 @@ app.post('/save-object', checkAuth, (req, res) => {
 
 // Get details of one item
 app.get('/details/:id', checkAuth, (req, res) => {
-  const id   = parseInt(req.params.id, 10);
+  const id   = req.params.id;
   const item = items.find(e => e.id === id);
 
   if (item) {
@@ -111,7 +114,7 @@ app.get('/details/:id', checkAuth, (req, res) => {
 
 // Delete one item
 app.delete('/details/:id', checkAuth, (req, res) => {
-  const id    = parseInt(req.params.id, 10);
+  const id    = req.params.id;
   const index = items.findIndex(e => e.id === id);
 
   if (index !== -1) {
@@ -123,30 +126,6 @@ app.delete('/details/:id', checkAuth, (req, res) => {
   }
 });
 
-// ID helper functions
-function getLastId() {
-  try {
-    if (fs.existsSync(idFilePath)) {
-      return parseInt(fs.readFileSync(idFilePath, 'utf8'), 10) || 0;
-    }
-  } catch (err) {
-  }
-  return 0;
-}
-
-function saveLastId(id) {
-  try {
-    fs.writeFileSync(idFilePath, id.toString(), 'utf8');
-  } catch (err) {
-  }
-}
-
-// Generate a new ID without saving an object
-app.get('/generate-id', (req, res) => {
-  const newId = getLastId() + 1;
-  saveLastId(newId);
-  res.json({ id: newId });
-});
 
 // Aggregated statistics for hardware items
 app.get('/statistics', checkAuth, (req, res) => {
